@@ -1,56 +1,66 @@
-﻿Console.Write("Enter your first number: ");
-string? input1 = Console.ReadLine();
-
-Console.Write("Enter your second number: ");
-string? input2 = Console.ReadLine();
-
-Console.Write("Please enter an operation (+, -, *, /): ");
-string? op = Console.ReadLine();
-
-if (int.TryParse(input1, out int number1))
+﻿using System.Globalization;
+string? input1;
+string? input2;
+string? op;
+string? check;
+double number1;
+double number2;
+do
 {
-    if (int.TryParse(input2, out int number2))
-    {
-        int answer = 0;
+    
 
-        if (op == "+")
-        {
-            answer = number1 + number2;
-        }
-        else if (op == "-")
-        {
-            answer = number1 - number2;
-        }
-        else if (op == "*")
-        {
-            answer = number1 * number2;
-        }
-        else if (op == "/")
-        {
-            if (number2 != 0)
+    do
+    {
+        Console.Write("Enter your first valid number:");
+        input1 = Console.ReadLine();
+    }
+    while(!double.TryParse(input1,out number1));
+
+
+    do
+    {
+        Console.Write("Enter your second valid number:");
+        input2 = Console.ReadLine();
+    }
+    while(!double.TryParse(input2, out number2));
+
+    
+    Console.Write("Enter your valid oper:");
+    op = Console.ReadLine();
+
+    switch (op)
+    {
+        case "+":
+            Console.WriteLine(number1 + number2);
+            break;
+        
+        case "-":
+            Console.WriteLine(number1 + number2);
+            break;
+
+        case "*":
+            Console.WriteLine(number1 * number2);
+            break;
+
+        case "/":
+            if (number2 == 0)
             {
-                answer = number1 / number2;
+                Console.WriteLine("Zero division");
+                break;
             }
             else
             {
-                Console.WriteLine("Cannot divide by zero!");
-                return;
+                Console.WriteLine(number1 / number2);
+                break;
             }
-        }
-        else
-        {
-            Console.WriteLine("Enter a valid operation");
-            return;
-        }
+    }
 
-        Console.WriteLine($"The answer is {answer}");
-    }
-    else
-    {
-        Console.WriteLine("Please enter a valid second number");
-    }
+
+
+Console.Write("Do you want to continuie? (y/n)");
+check = Console.ReadLine();
+
+
+    
 }
-else
-{
-    Console.WriteLine("Please enter a valid first number");
-}
+while (check == "y");
